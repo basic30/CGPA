@@ -1,35 +1,59 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGPA Calculator</title>
+    <title>CGPA & YGPA Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
+            background-color: #f3f3f3;
         }
         input {
             padding: 10px;
             margin: 10px;
             width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         button {
             padding: 10px 20px;
             margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        img {
+            width: 200px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-<h1>CGPA Calculator</h1>
+<h1>CGPA & YGPA Calculator</h1>
+<h3>Made By Snahasish 👋</h3>
+
 <label>Enter SGPA (Semester Wise):</label>
 <br>
 <input type="text" id="sgpa" placeholder="Example: 7.08, 6.5, 8.0">
 <br>
 <button onclick="calculateCGPA()">Calculate CGPA</button>
 <h2 id="result"></h2>
+
+<label>Enter YGPA (Year Wise SGPA):</label>
+<br>
+<input type="text" id="ygpa" placeholder="Example: 7.5, 8.0">
+<br>
+<button onclick="calculateYGPA()">Calculate YGPA</button>
+<h2 id="ygpaResult"></h2>
 
 <script>
 function calculateCGPA() {
@@ -43,6 +67,19 @@ function calculateCGPA() {
         document.getElementById('result').innerHTML = `Your CGPA: ${cgpa.toFixed(2)} <br> Percentage: ${percentage.toFixed(2)}%`;
     } else {
         document.getElementById('result').innerHTML = "Please enter valid numbers.";
+    }
+}
+
+function calculateYGPA() {
+    let ygpa = document.getElementById('ygpa').value;
+    let ygpaArray = ygpa.split(',').map(Number);
+    let total = ygpaArray.reduce((a, b) => a + b, 0);
+    let ygpaResult = total / ygpaArray.length;
+
+    if (!isNaN(ygpaResult)) {
+        document.getElementById('ygpaResult').innerHTML = `Your YGPA: ${ygpaResult.toFixed(2)}`;
+    } else {
+        document.getElementById('ygpaResult').innerHTML = "Please enter valid numbers.";
     }
 }
 </script>
