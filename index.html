@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>CGPA Calculator</h1>
+<label>Enter SGPA (Semester Wise):</label>
+<br>
+<input type="text" id="sgpa" placeholder="Example: 7.08, 6.5, 8.0">
+<br>
+<button onclick="calculateCGPA()">Calculate CGPA</button>
+<h2 id="result"></h2>
+
+<script>
+function calculateCGPA() {
+    let sgpa = document.getElementById('sgpa').value;
+    let sgpaArray = sgpa.split(',').map(Number);
+    let total = sgpaArray.reduce((a, b) => a + b, 0);
+    let cgpa = total / sgpaArray.length;
+    let percentage = (cgpa - 0.75) * 10;
+
+    if (!isNaN(cgpa)) {
+        document.getElementById('result').innerHTML = `Your CGPA: ${cgpa.toFixed(2)} <br> Percentage: ${percentage.toFixed(2)}%`;
+    } else {
+        document.getElementById('result').innerHTML = "Please enter valid numbers.";
+    }
+}
+</script>
+</body>
+</html>
